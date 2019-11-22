@@ -21,13 +21,14 @@ class variable {
 public:
     variable(); // Default constructor
     variable(string, long); // Constructor allowing variable name and value to be set
-    variable(string, long, int); // Constructor allowing each value to be set
     string getVariableName(){ return variableName;} //getter
     long getVariableValue(){ return variableValue;} //getter
     int getMemoryLocation(){ return memoryLocation;} //getter
     void setVariableName(string x){this->variableName = std::move(x);} //setter
     void setVariableValue(long);//setter
     void setMemoryLocation(int); //setter
+    void assign(string, long); //`Assigner
+    void assign(string, long, int); //`Assigner
 };
 
 /**
@@ -54,24 +55,6 @@ variable::variable(string inputString, long inputLong) {
 }
 
 /**
- * Default Constructor
- * @param inputString string to be set
- * @param inputLong The Long to be set
- * @param inputMemory memory location the variable should be placed into
- */
-variable::variable(string inputString, long inputLong, int inputMemory) {
-    if(inputMemory > 31){
-        throw OUT_OF_MEMORY_RANGE;
-    }
-    if(inputLong > 4294967295){
-        throw LONG_VALUE_TO_LARGE;
-    }
-    this->variableName = std::move(inputString);
-    this->variableValue = inputLong;
-    this->memoryLocation = inputMemory;
-}
-
-/**
  * Sets the memory location
  * @param inputMemory memory location the variable should be placed into
  */
@@ -93,6 +76,37 @@ void variable::setVariableValue(long inputLong) {
     }else{
         this->variableValue = inputLong;
     }
+}
+
+/**
+ * Assigns data to object
+ * @param inputString string to be set
+ * @param inputLong The Long to be set
+ * @param inputMemory memory location the variable should be placed into
+ */
+void variable::assign(string inputString, long inputLong, int inputMemory) {
+    if(inputMemory > 31){
+        throw OUT_OF_MEMORY_RANGE;
+    }
+    if(inputLong > 4294967295){
+        throw LONG_VALUE_TO_LARGE;
+    }
+    this->variableName = std::move(inputString);
+    this->variableValue = inputLong;
+    this->memoryLocation = inputMemory;
+}
+
+/**
+ * Assigns data to object
+ * @param inputString string to be set
+ * @param inputLong The Long to be set
+ */
+void variable::assign(string inputString, long inputLong) {
+    if(inputLong > 4294967295){
+        throw LONG_VALUE_TO_LARGE;
+    }
+    this->variableName = std::move(inputString);
+    this->variableValue = inputLong;
 }
 
 

@@ -13,25 +13,29 @@
 using namespace std;
 
 class instructions{
-    int lineNumber;
+    string variable;
     int functionNumber;
+    int memoryLocation;
 
 public:
     instructions();
-    instructions(int, int);
-    void setData(int, int);
-    void setLineNumber(int);
+    instructions(string, int);
+    void setData(string, int);
     void setFunctionNumber(int);
-    int getLineNumber();
+    void setMemoryLocation(int);
+    void setVariable(string variableInput){this->variable = std::move(variableInput);}
     int getFunctionNumber();
+    int getMemoryLocation();
+    string getVariable(){return this->variable;}
 };
 
 /**
  * Default constructor
  */
 instructions::instructions() {
-    this->lineNumber = -1;
+    this->variable = "";
     this->functionNumber = -1;
+    this->memoryLocation = -1;
 }
 
 /**
@@ -39,29 +43,14 @@ instructions::instructions() {
  * @param lineInput what the Line Number should be set to
  * @param functionInput what the Function Number should be set to
  */
-instructions::instructions(int lineInput, int functionInput) {
-    // Checks whether a memory location an instruction wants to access exists.
-    if(lineInput > 31 || lineInput < 0){
-        throw OUT_OF_MEMORY_RANGE;
-    }
+instructions::instructions(string variableInput, int functionInput) {
     // Checks weather the function that us being set exists
     if(functionInput < 0 || functionInput > 7){
         throw INSTRUCTION_DOES_NOT_EXIST;
     }
-    this->lineNumber = lineInput;
+    this->variable = std::move(variableInput);
     this->functionNumber = functionInput;
-}
-
-/**
- * Sets the line number of the object
- * @param lineInput what the Line Number should be set to
- */
-void instructions::setLineNumber(int lineInput) {
-    // Checks whether a memory location an instruction wants to access exists.
-    if(lineInput > 31 || lineInput < 0){
-        throw OUT_OF_MEMORY_RANGE;
-    }
-    this->lineNumber = lineInput;
+    this->memoryLocation = -1;
 }
 
 /**
@@ -77,14 +66,6 @@ void instructions::setFunctionNumber(int functionInput) {
 }
 
 /**
- * Gets the line number of the object
- * @return the line number requested from the object
- */
-int instructions::getLineNumber() {
-    return this->lineNumber;
-}
-
-/**
  * Gets the function number of the object
  * @return the function number of the object requested
  */
@@ -97,17 +78,33 @@ int instructions::getFunctionNumber() {
  * @param lineInput what the Line Number should be set to
  * @param functionInput what the Function Number should be set to
  */
-void instructions::setData(int lineInput, int functionInput) {
-    // Checks whether a memory location an instruction wants to access exists.
-    if(lineInput > 31 || lineInput < 0){
-        throw OUT_OF_MEMORY_RANGE;
-    }
+void instructions::setData(string variableInput, int functionInput) {
     // Checks weather the function that us being set exists
     if(functionInput < 0 || functionInput > 7){
         throw INSTRUCTION_DOES_NOT_EXIST;
     }
-    this->lineNumber = lineInput;
+    this->variable = std::move(variableInput);
     this->functionNumber = functionInput;
+}
+
+/**
+ * Sets the memoryLocation of the object
+ * @param memoryInput what the memory location should be set to
+ */
+void instructions::setMemoryLocation(int memoryInput) {
+    // check if the set memory location is within range
+    if(memoryInput > 31 || memoryInput < 0){
+        throw OUT_OF_MEMORY_RANGE;
+    }
+    this->memoryLocation = memoryInput;
+}
+
+/**
+ * Gets the memory location of object
+ * @return the memory location of the object requested
+ */
+int instructions::getMemoryLocation() {
+    return this->memoryLocation;
 }
 
 

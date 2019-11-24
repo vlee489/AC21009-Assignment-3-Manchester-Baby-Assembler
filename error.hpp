@@ -16,9 +16,6 @@
 #define VARIABLE_DOES_NOT_EXIST -104 // When a variable doesn't exist
 #define NOT_ENOUGH_MEMORY -105 // If there isn't enough memory Locations to be allocated out to all variables
 
-// Error for FileParser
-#define FILE_IO_ERROR -201 // Error opening file
-
 // Errors for instructions
 #define INSTRUCTION_DOES_NOT_EXIST  -301 // Instruction does not exist in instruction Set
 

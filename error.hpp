@@ -20,4 +20,6 @@
 #define INSTRUCTION_DOES_NOT_EXIST  -301 // Instruction does not exist in instruction Set
 #define OUTSIDE_OF_VECTOR_RANGE -302 // When an item is requested from an invalid vector location;
 
+#define INPUT_TOO_BIG -401 // When the input int/long is too large
+
 #endif //MBASSEMBLER_ERROR_HPP

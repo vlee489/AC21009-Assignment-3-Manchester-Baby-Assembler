@@ -7,6 +7,7 @@
 #include <string>
 #include <utility>
 #include "error.hpp"
+#include "config.hpp"
 
 using namespace std;
 
@@ -59,7 +60,7 @@ variable::variable(string inputString, long inputLong) {
  * @param inputMemory memory location the variable should be placed into
  */
 void variable::setMemoryLocation(int inputMemory) {
-    if(inputMemory > 31){
+    if(inputMemory > (numberOfMemoryLocationsConfig-1) || inputMemory < 0){
         throw OUT_OF_MEMORY_RANGE;
     }else{
         this->memoryLocation = inputMemory;
@@ -85,7 +86,7 @@ void variable::setVariableValue(long inputLong) {
  * @param inputMemory memory location the variable should be placed into
  */
 void variable::assign(string inputString, long inputLong, int inputMemory) {
-    if(inputMemory > 31){
+    if(inputMemory > (numberOfMemoryLocationsConfig-1) || inputMemory < 0){
         throw OUT_OF_MEMORY_RANGE;
     }
     if(inputLong > 4294967295){

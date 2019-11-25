@@ -18,5 +18,6 @@
 
 // Errors for instructions
 #define INSTRUCTION_DOES_NOT_EXIST  -301 // Instruction does not exist in instruction Set
+#define OUTSIDE_OF_VECTOR_RANGE -302 // When an item is requested from an invalid vector location;
 
 #endif //MBASSEMBLER_ERROR_HPP

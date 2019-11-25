@@ -9,17 +9,18 @@
 #include <string>
 #include <utility>
 #include "error.hpp"
+#include "config.hpp"
 
 using namespace std;
 
-class instructions{
+class instruction{
     string variable;
     int functionNumber;
     int memoryLocation;
 
 public:
-    instructions();
-    instructions(string, int);
+    instruction();
+    instruction(string, int);
     void setData(string, int);
     void setFunctionNumber(int);
     void setMemoryLocation(int);
@@ -32,7 +33,7 @@ public:
 /**
  * Default constructor
  */
-instructions::instructions() {
+instruction::instruction() {
     this->variable = "";
     this->functionNumber = -1;
     this->memoryLocation = -1;
@@ -43,9 +44,9 @@ instructions::instructions() {
  * @param lineInput what the Line Number should be set to
  * @param functionInput what the Function Number should be set to
  */
-instructions::instructions(string variableInput, int functionInput) {
+instruction::instruction(string variableInput, int functionInput) {
     // Checks weather the function that us being set exists
-    if(functionInput < 0 || functionInput > 7){
+    if(functionInput < 0 || functionInput > numberOfInstructionsConfig){
         throw INSTRUCTION_DOES_NOT_EXIST;
     }
     this->variable = std::move(variableInput);
@@ -57,7 +58,7 @@ instructions::instructions(string variableInput, int functionInput) {
  * Sets the function number of the object
  * @param functionInput what the Function Number should be set to
  */
-void instructions::setFunctionNumber(int functionInput) {
+void instruction::setFunctionNumber(int functionInput) {
     // Checks weather the function that us being set exists
     if(functionInput < 0 || functionInput > 7){
         throw INSTRUCTION_DOES_NOT_EXIST;
@@ -69,7 +70,7 @@ void instructions::setFunctionNumber(int functionInput) {
  * Gets the function number of the object
  * @return the function number of the object requested
  */
-int instructions::getFunctionNumber() {
+int instruction::getFunctionNumber() {
     return this->functionNumber;
 }
 
@@ -78,9 +79,9 @@ int instructions::getFunctionNumber() {
  * @param lineInput what the Line Number should be set to
  * @param functionInput what the Function Number should be set to
  */
-void instructions::setData(string variableInput, int functionInput) {
+void instruction::setData(string variableInput, int functionInput) {
     // Checks weather the function that us being set exists
-    if(functionInput < 0 || functionInput > 7){
+    if(functionInput < 0 || functionInput > numberOfMemoryLocationsConfig){
         throw INSTRUCTION_DOES_NOT_EXIST;
     }
     this->variable = std::move(variableInput);
@@ -91,9 +92,9 @@ void instructions::setData(string variableInput, int functionInput) {
  * Sets the memoryLocation of the object
  * @param memoryInput what the memory location should be set to
  */
-void instructions::setMemoryLocation(int memoryInput) {
+void instruction::setMemoryLocation(int memoryInput) {
     // check if the set memory location is within range
-    if(memoryInput > 31 || memoryInput < 0){
+    if(memoryInput > (numberOfMemoryLocationsConfig-1) || memoryInput < 0){
         throw OUT_OF_MEMORY_RANGE;
     }
     this->memoryLocation = memoryInput;
@@ -103,7 +104,7 @@ void instructions::setMemoryLocation(int memoryInput) {
  * Gets the memory location of object
  * @return the memory location of the object requested
  */
-int instructions::getMemoryLocation() {
+int instruction::getMemoryLocation() {
     return this->memoryLocation;
 }
 

@@ -8,6 +8,7 @@
 #include <vector>
 #include "variable.hpp"
 #include "error.hpp"
+#include "config.hpp"
 
 using namespace std;
 
@@ -15,7 +16,7 @@ class variableList{
     vector<variable> variableContainer; // Contains the variables
 public:
     // Look below the class declaration for the use of each function
-    bool doesContainName(string variableName);
+    bool doesContainName(const string& variableName);
     void addVariable(string variableName, long variableLong);
     void updateVariable(string variableName, long variableLong);
     void setMemoryLocation(string variableName, int memoryLocation);
@@ -23,6 +24,7 @@ public:
     long getVariableData(string variableName);
     int getMemoryLocation(string variableName);
     int sizeOfVariableList();
+    void printVariableList();
 };
 
 /**
@@ -30,7 +32,7 @@ public:
  * @param variableName the name you want to see is in the list or not
  * @return wether the item exists or not
  */
-bool variableList::doesContainName(string variableName) {
+bool variableList::doesContainName(const string& variableName) {
     for(auto & i : variableContainer){
         if(i.getVariableName() == variableName){
             return true;
@@ -96,7 +98,7 @@ void variableList::setMemoryLocation(string variableName, int memoryLocation) {
  */
 void variableList::bulkSetMemoryLocation(int fromMemoryLocation) {
     // Checks if we have enough memory locations to allocate to all variables
-    if((32-fromMemoryLocation) < (int)variableContainer.size()){
+    if((numberOfMemoryLocationsConfig-fromMemoryLocation) < (int)variableContainer.size()){
         throw NOT_ENOUGH_MEMORY;
     }else{
         int memoryLocationBeingSet = fromMemoryLocation;
@@ -150,6 +152,18 @@ int variableList::getMemoryLocation(string variableName) {
  */
 int variableList::sizeOfVariableList() {
     return (int)variableContainer.size();
+}
+
+/**
+ * Prints out the list of variables to the console
+ */
+void variableList::printVariableList() {
+    cout << "==========================" << endl;
+    cout << "Variable Vector List" << endl;
+    for(auto & i : variableContainer){
+        cout << "Variable Name: " << i.getVariableName() << " | Variable Value: " << i.getVariableValue() << " | Memory Address: " << i.getMemoryLocation() << endl;
+    }
+    cout << "==========================" << endl;
 }
 
 

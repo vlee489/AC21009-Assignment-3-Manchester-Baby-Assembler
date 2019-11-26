@@ -53,18 +53,19 @@ void processInputFiles(string txtFile){
 
     string line;
     while (getline(reader, line)){
-        string chunk = "";
-        vector<string> tempVector;
-        for(char &l : line){
+        string chunk = ""; //Used to temp hold chars as we process them
+        vector<string> tempVector; // creates a temp vector for holding strings
+        for(char &l : line){ //
             if(l == ' ' && !chunk.empty()){
                 tempVector.push_back(chunk);
                 chunk = "";
-            }else if(l == ';'){ // we break if we hit a comment
+            }else if(l == ';'){ // we break if we hit a comment as the semi-collon and anything after is a comment
                 break;
             }else if(l != ':' && l != ' '){
                 chunk += l;
             }
         }
+        // If the tempory vector for the line we just processed isn't empty we push it to the vector
         if(!tempVector.empty()){
             processedInput.push_back(tempVector);
         }

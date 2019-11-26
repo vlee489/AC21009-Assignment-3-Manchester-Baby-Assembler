@@ -13,15 +13,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d368ebb-dede-4f6a-9d9b-78ff803e4a35" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmd.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assembler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/assembler.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assemblerFunctions.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/instruction.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/instruction.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/instructionList.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/instructionList.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharedLibrary.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/sharedLibrary.hpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

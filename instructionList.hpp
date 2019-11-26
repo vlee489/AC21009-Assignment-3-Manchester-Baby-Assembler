@@ -20,6 +20,7 @@ public:
     long getInstructionListSize(){ return instructionList.size();} // returns size of vector
     instruction getItemInInstructionList(int);
     void addInstructions(string, int);
+    void addInstructions(int);
     void bulkSetMemoryLocation(int);
     void printInstructionList();
 };
@@ -34,6 +35,11 @@ instruction instructionList::getItemInInstructionList(int vectorLocation) {
 
 void instructionList::addInstructions(string variableName, int functionCode) {
     instruction temp(std::move(variableName), functionCode);
+    instructionList.push_back(temp);
+}
+
+void instructionList::addInstructions(int functionCode) {
+    instruction temp(functionCode);
     instructionList.push_back(temp);
 }
 

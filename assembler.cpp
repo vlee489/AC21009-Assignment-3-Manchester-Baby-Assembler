@@ -5,18 +5,43 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <cstdlib>
 #include "variable.hpp"
 #include "error.hpp"
 #include "variableList.hpp"
 #include "sharedLibrary.hpp"
 #include "instructionList.hpp"
-#include "assemblerFunctions.hpp"
 
 using namespace std;
 
 vector<vector<string>> processedInput;
 variableList variableContainer;
 instructionList instructionContainer;
+
+/**
+ * Turns mnemonic into function numbers
+ * @param mnemonic
+ * @return the function number
+ */
+int mnemonicToInt(string mnemonic){
+    if(mnemonic == "JMP"){
+        return 0;
+    }else if(mnemonic == "JRP"){
+        return 1;
+    }else if(mnemonic == "LDN"){
+        return 2;
+    }else if(mnemonic == "STO"){
+        return 3;
+    }else if(mnemonic == "SUB"){
+        return 4;
+    }else if(mnemonic == "CMP"){
+        return 6;
+    }else if(mnemonic == "STP"){
+        return 7;
+    }else{
+        throw INSTRUCTION_DOES_NOT_EXIST;
+    }
+}
 
 void processInputFiles(string txtFile){
     ifstream reader(txtFile);
@@ -75,13 +100,34 @@ void processAssembly(){
     // var 0
 
     //This starts first line that has a the START identifier
-    vector<string> vectorTemp = processedInput.at(1);
-    instructionContainer.addInstructions(vectorTemp.at(1), )
+    vector<string> vectorTemp = processedInput.at(firstInstruction);
+    instructionContainer.addInstructions(vectorTemp.at(2), mnemonicToInt(vectorTemp.at(1)));
 
+    //Places all the instructions between the first and last instruction in the assembly file
     for(int i = firstInstruction+1; i < lastInstruction; i++){
-
+        vectorTemp = processedInput.at(i);
+        instructionContainer.addInstructions(vectorTemp.at(1), mnemonicToInt(vectorTemp.at(0)));
     }
 
+    // This parses the last instruction in the assembly file
+    vectorTemp = processedInput.at(lastInstruction);
+    instructionContainer.addInstructions(mnemonicToInt(vectorTemp.at(1)));
+
+    // This assignees the memory locations of the instructions.
+    instructionContainer.bulkSetMemoryLocation(1);
+
+    for(int i = lastInstruction+1; i < (int)processedInput.size(); i++){
+        vectorTemp = processedInput.at(i);
+        if(vectorTemp.at(1) == "VAR"){
+            variableContainer.addVariable(vectorTemp.at(0), stoi(vectorTemp.at(2)));
+        }
+    }
+
+    // This assigns the memory locations of the variables, from the last instructions
+    variableContainer.bulkSetMemoryLocation(instructionContainer.getInstructionListSize()+1);
+
+    instructionContainer.printInstructionList();
+    variableContainer.printVariableList();
 
 }
 

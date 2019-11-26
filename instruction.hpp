@@ -20,6 +20,7 @@ class instruction{
 
 public:
     instruction();
+    instruction(int);
     instruction(string, int);
     void setData(string, int);
     void setFunctionNumber(int);
@@ -36,6 +37,20 @@ public:
 instruction::instruction() {
     this->variable = "";
     this->functionNumber = -1;
+    this->memoryLocation = -1;
+}
+
+/**
+ * Constructor but allows function number to be set
+ * @param functionInput what the Function Number should be set to
+ */
+instruction::instruction(int functionInput) {
+    // Checks weather the function that us being set exists
+    if(functionInput < 0 || functionInput > numberOfInstructionsConfig){
+        throw INSTRUCTION_DOES_NOT_EXIST;
+    }
+    this->variable = "";
+    this->functionNumber = functionInput;
     this->memoryLocation = -1;
 }
 

@@ -7,6 +7,7 @@
 #define MBASSEMBLER_SHAREDLIBRARY_HPP
 
 #include <bitset>
+#include <algorithm>
 
 /**
  * Truns a long into a binary output

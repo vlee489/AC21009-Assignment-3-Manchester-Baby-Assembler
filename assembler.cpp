@@ -48,7 +48,7 @@ void processInputFiles(string txtFile){
 
     if (!reader) {
         cout << "Error opening input file" << endl;
-        return;
+        throw FILE_IO_ERROR;
     }
 
     string line;
@@ -70,9 +70,15 @@ void processInputFiles(string txtFile){
             processedInput.push_back(tempVector);
         }
     }
+    reader.close();
 }
 
 void processAssembly(){
+
+    if(processedInput.empty()){
+        throw INPUT_PROCESS_FAILED;
+    }
+
     int firstInstruction = -1;
     int lastInstruction = -1;
 
@@ -95,8 +101,6 @@ void processAssembly(){
         throw UNABLE_TO_FIND_START_OR_AND_END;
     }
 
-    cout << firstInstruction << " | " << lastInstruction << endl;
-
     // We skip parsing the first line as it will always be
     // var 0
 
@@ -115,8 +119,9 @@ void processAssembly(){
     instructionContainer.addInstructions(mnemonicToInt(vectorTemp.at(1)));
 
     // This assignees the memory locations of the instructions.
-    instructionContainer.bulkSetMemoryLocation(1);
+    instructionContainer.bulkSetMemoryLocation(1); // this is set to 1 as the MB starts its IC from 1 instead of 0
 
+    // For item after the last instruction that's a var
     for(int i = lastInstruction+1; i < (int)processedInput.size(); i++){
         vectorTemp = processedInput.at(i);
         if(vectorTemp.at(1) == "VAR"){
@@ -129,6 +134,41 @@ void processAssembly(){
 
     instructionContainer.printInstructionList();
     variableContainer.printVariableList();
+
+}
+
+void outputMachineCode(string writeFile){
+    if(variableContainer.sizeOfVariableList() == 0 || instructionContainer.getInstructionListSize() ==0){
+        throw INPUT_PROCESS_FAILED;
+    }
+    if(writeFile.empty()){
+        throw INVALID_INPUT;
+    }
+
+    ofstream outputFile(writeFile);
+    if(!outputFile.is_open()){
+        cout << "Error opening input file" << endl;
+        throw FILE_IO_ERROR;
+    }
+
+    outputFile << "00000000000000000000000000000000" << endl;
+
+    // for each instruction in the Instruction Container
+    for(int i = 0; i < instructionContainer.getInstructionListSize(); i++){
+        instruction tempInstruct = instructionContainer.getItemInInstructionList(i);
+        string stringBuilder = "";
+        int lineNo = variableContainer.getMemoryLocation(tempInstruct.getVariable());
+        stringBuilder += reverseString(memoryLocationToBinary(lineNo));
+        stringBuilder += "00000000";
+        stringBuilder += reverseString(instructionToBinary(tempInstruct.getFunctionNumber()));
+        stringBuilder += "0000000000000000";
+        outputFile << stringBuilder << endl;
+    }
+
+    // for each variable in variable container
+    for(int i = 0; i < variableContainer.sizeOfVariableList(); i++){
+        outputFile << reverseString(memoryLocationToBinary(variableContainer.getVariable(i).getVariableValue())) << endl;
+    }
 
 }
 
@@ -146,6 +186,6 @@ void printVectorLine(){
 int main(){
     processInputFiles("test.txt");
     processAssembly();
-    printVectorLine();
+    outputMachineCode("output.txt");
 }
 

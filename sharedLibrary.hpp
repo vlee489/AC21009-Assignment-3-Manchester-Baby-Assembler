@@ -31,6 +31,18 @@ string instructionToBinary(int inputInt){
 }
 
 /**
+ * Turns number into 5 bits
+ * @param inputInt input number
+ * @return string binary
+ */
+string memoryLocationToBinary(int inputInt){
+    if(inputInt > 31){
+        throw INPUT_TOO_BIG;
+    }
+    return bitset<5>(inputInt).to_string();
+}
+
+/**
  * Reverses a string
  * @param stringIn string to be reversed
  * @return the reversed string

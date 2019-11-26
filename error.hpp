@@ -25,5 +25,8 @@
 // Assembler errors
 #define NO_INSTRUCTION_TO_PROCESS -501 // no instructions in vector to process
 #define UNABLE_TO_FIND_START_OR_AND_END -502 // unable to find mnomics START or/and END
+#define INPUT_PROCESS_FAILED -503 // Some error with processing the input of split varibles
+#define INVALID_INPUT -504 // Invalid parm given
+#define FILE_IO_ERROR -505 // can't open file
 
 #endif //MBASSEMBLER_ERROR_HPP

@@ -25,6 +25,7 @@ public:
     int getMemoryLocation(string variableName);
     int sizeOfVariableList();
     void printVariableList();
+    variable getVariable(int vectorLocation);
 };
 
 /**
@@ -164,6 +165,13 @@ void variableList::printVariableList() {
         cout << "Variable Name: " << i.getVariableName() << " | Variable Value: " << i.getVariableValue() << " | Memory Address: " << i.getMemoryLocation() << endl;
     }
     cout << "==========================" << endl;
+}
+
+variable variableList::getVariable(int vectorLocation) {
+    if(vectorLocation >= variableContainer.size() || vectorLocation < 0){
+        throw OUTSIDE_OF_VECTOR_RANGE;
+    }
+    return variableContainer.at(vectorLocation);
 }
 
 

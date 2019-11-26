@@ -25,7 +25,7 @@ int mnemonicToInt(string mnemonic){
         return 4;
     }else if(mnemonic == "CMP"){
         return 6;
-    }else if(mnemonic == "STOP"){
+    }else if(mnemonic == "STP"){
         return 7;
     }else{
         throw INSTRUCTION_DOES_NOT_EXIST;

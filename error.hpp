@@ -22,4 +22,8 @@
 
 #define INPUT_TOO_BIG -401 // When the input int/long is too large
 
+// Assembler errors
+#define NO_INSTRUCTION_TO_PROCESS -501 // no instructions in vector to process
+#define UNABLE_TO_FIND_START_OR_AND_END -502 // unable to find mnomics START or/and END
+
 #endif //MBASSEMBLER_ERROR_HPP

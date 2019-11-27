@@ -28,5 +28,6 @@
 #define INPUT_PROCESS_FAILED -503 // Some error with processing the input of split varibles
 #define INVALID_INPUT -504 // Invalid parm given
 #define FILE_IO_ERROR -505 // can't open file
+#define VARIABLE_USED_BUT_NOT_DEFINED -506 //when a variable is used but not defined in the assembly
 
 #endif //MBASSEMBLER_ERROR_HPP

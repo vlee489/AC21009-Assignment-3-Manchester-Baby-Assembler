@@ -5,8 +5,6 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-#include <cstdlib>
-#include "variable.hpp"
 #include "error.hpp"
 #include "variableList.hpp"
 #include "sharedLibrary.hpp"
@@ -14,9 +12,9 @@
 
 using namespace std;
 
-vector<vector<string>> processedInput;
-variableList variableContainer;
-instructionList instructionContainer;
+vector<vector<string>> processedInput; // Holds the input file after it's cleaned up
+variableList variableContainer; // Holds all the variables used in the assembly file
+instructionList instructionContainer; // Holds all the instructions states in the assembly file
 
 /**
  * Turns mnemonic into function numbers
@@ -43,6 +41,10 @@ int mnemonicToInt(string mnemonic){
     }
 }
 
+/**
+ * Takes the input assembly txt file and places the cleaned contents into the processedInput vector
+ * @param txtFile the file to read into
+ */
 void processInputFiles(string txtFile){
     ifstream reader(txtFile);
 
@@ -73,6 +75,9 @@ void processInputFiles(string txtFile){
     reader.close();
 }
 
+/**
+ * Processes the assembly file in the processedInput Vector into variable and instruction containers
+ */
 void processAssembly(){
 
     if(processedInput.empty()){
@@ -134,6 +139,10 @@ void processAssembly(){
 
 }
 
+/**
+ * Re-asembles the Variable and Instruction containers into machine code
+ * @param writeFile the file to output the machine code to.
+ */
 void outputMachineCode(string writeFile){
     if(variableContainer.sizeOfVariableList() == 0 || instructionContainer.getInstructionListSize() ==0){
         throw INPUT_PROCESS_FAILED;
@@ -160,6 +169,9 @@ void outputMachineCode(string writeFile){
         }catch(...){
             //This try catch is to catch any time we looks for a variable that doesn't exist,
             //like when the string is blank, e.g. STP command
+            if(tempInstruct.getFunctionNumber() != 7){ // we check if it's the stp function
+                throw VARIABLE_USED_BUT_NOT_DEFINED;
+            }
         }
         stringBuilder += reverseString(memoryLocationToBinary(lineNo));
         stringBuilder += "00000000";
@@ -170,11 +182,15 @@ void outputMachineCode(string writeFile){
 
     // for each variable in variable container
     for(int i = 0; i < variableContainer.sizeOfVariableList(); i++){
+
         outputFile << reverseString(toBinary(variableContainer.getVariable(i).getVariableValue())) << endl;
     }
 
 }
 
+/**
+ * Debugging tool to print out the processedInput vector
+ */
 void printVectorLine(){
     cout << "=======================" << endl;
     for(auto &i : processedInput){
@@ -185,6 +201,7 @@ void printVectorLine(){
     }
     cout << endl << "=======================" << endl;
 }
+
 
 int main(){
     processInputFiles("test.txt");

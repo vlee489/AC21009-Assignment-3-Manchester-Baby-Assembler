@@ -31,15 +31,16 @@ public:
 /**
  * Checks if a variable with that name already exists
  * @param variableName the name you want to see is in the list or not
- * @return wether the item exists or not
+ * @return whether the item exists or not
  */
 bool variableList::doesContainName(const string& variableName) {
+    // We look through each item in the vector
     for(auto & i : variableContainer){
-        if(i.getVariableName() == variableName){
-            return true;
+        if(i.getVariableName() == variableName){ //if the object we have a name matching
+            return true;// we return true as the object exists
         }
     }
-    return false;
+    return false; // if we go through the whole vector with no valid responses we return false for no doesn't exist
 }
 
 /**
@@ -49,9 +50,9 @@ bool variableList::doesContainName(const string& variableName) {
  */
 void variableList::addVariable(string variableName, long variableLong) {
     if(!doesContainName(variableName)){
-        variable temp;
-        temp.assign(variableName, variableLong);
-        variableContainer.push_back(temp);
+        variable temp; //create object
+        temp.assign(variableName, variableLong); //set values
+        variableContainer.push_back(temp); // place object into vector
     }else{
         throw VARIABLE_NAME_PRESENT;
     }
@@ -64,9 +65,10 @@ void variableList::addVariable(string variableName, long variableLong) {
  */
 void variableList::updateVariable(string variableName, long variableLong) {
     if(doesContainName(variableName)){
+        //for each variable object in the vector
         for(auto & i : variableContainer){
-            if(i.getVariableName() == variableName){
-                i.setVariableValue(variableLong);
+            if(i.getVariableName() == variableName){// if the variables name match
+                i.setVariableValue(variableLong);//set the variable value of object
                 return;
             }
         }
@@ -82,9 +84,10 @@ void variableList::updateVariable(string variableName, long variableLong) {
  */
 void variableList::setMemoryLocation(string variableName, int memoryLocation) {
     if(doesContainName(variableName)){
+        //for each variable object in the vector
         for(auto & i : variableContainer){
-            if(i.getVariableName() == variableName){
-                i.setMemoryLocation(memoryLocation);
+            if(i.getVariableName() == variableName){// if the variables name match
+                i.setMemoryLocation(memoryLocation);// set the memory location of the object
                 return;
             }
         }
@@ -124,9 +127,10 @@ long variableList::getVariableData(string variableName) {
     if(!doesContainName(variableName)){
         throw VARIABLE_DOES_NOT_EXIST;
     }else{
+        //for each variable object in the vector
         for(auto & i : variableContainer){
-            if(i.getVariableName() == variableName){
-                return i.getVariableValue();
+            if(i.getVariableName() == variableName){ // if the variables name match
+                return i.getVariableValue(); //return the variable value of object
             }
         }
     }
@@ -142,9 +146,10 @@ int variableList::getMemoryLocation(string variableName) {
     if(!doesContainName(variableName)){
         throw VARIABLE_DOES_NOT_EXIST;
     }else{
+        //for each variable object in the vector
         for(auto & i : variableContainer){
-            if(i.getVariableName() == variableName){
-                return i.getMemoryLocation();
+            if(i.getVariableName() == variableName){ // if the variables name match
+                return i.getMemoryLocation(); // return the memory location of the object
             }
         }
     }
@@ -171,6 +176,11 @@ void variableList::printVariableList() {
     cout << "==========================" << endl;
 }
 
+/**
+ * returns the variable object
+ * @param vectorLocation the vector locations
+ * @return the variable object from the requested object location.
+ */
 variable variableList::getVariable(int vectorLocation) {
     if(vectorLocation > (int)variableContainer.size() || vectorLocation < 0){
         throw OUTSIDE_OF_VECTOR_RANGE;

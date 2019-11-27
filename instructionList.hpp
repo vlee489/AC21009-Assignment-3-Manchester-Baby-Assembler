@@ -25,6 +25,11 @@ public:
     void printInstructionList();
 };
 
+/**
+ * gets an instruction object from the vector
+ * @param vectorLocation vector locations
+ * @return the instruction object requested
+ */
 instruction instructionList::getItemInInstructionList(int vectorLocation) {
     // Check whether the location is valid for the vector
     if(vectorLocation > (int)instructionList.size() || vectorLocation < 0) {
@@ -33,22 +38,38 @@ instruction instructionList::getItemInInstructionList(int vectorLocation) {
     return instructionList.at(vectorLocation);
 }
 
+/**
+ * Adds instruction to vector
+ * @param variableName the variable name used
+ * @param functionCode the function code of that instruction
+ */
 void instructionList::addInstructions(string variableName, int functionCode) {
+    // creates object and places into vector
     instruction temp(std::move(variableName), functionCode);
     instructionList.push_back(temp);
 }
 
+/**
+ * Adds instruction to vector
+ * @param functionCode the function code of that instruction
+ */
 void instructionList::addInstructions(int functionCode) {
+    // creates object and places into vector
     instruction temp(functionCode);
     instructionList.push_back(temp);
 }
 
+/**
+ * Allows for bulk setting memory locations
+ * @param fromMemoryLocation the memory location to start from
+ */
 void instructionList::bulkSetMemoryLocation(int fromMemoryLocation) {
     // Checks if we have enough memory locations to allocate to all variables
     if((numberOfMemoryLocationsConfig-fromMemoryLocation) < (int)instructionList.size()){
         throw NOT_ENOUGH_MEMORY;
     }else{
         int memoryLocationBeingSet = fromMemoryLocation;
+        // for each instruction we set the memory location then increment the instruction by one
         for(auto & i : instructionList){
             i.setMemoryLocation(memoryLocationBeingSet);
             memoryLocationBeingSet++;

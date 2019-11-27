@@ -45,6 +45,7 @@ void updateConfig(const string& txtConfig){
             }
         }
         if(!option.empty()){
+            //Looks if the option exists and then assigns the new value if it does
             if(option == "numberOfInstructionsConfig"){
                 numberOfInstructionsConfig = stoi(newVariable);
             }else if(option == "numberOfMemoryLocationsConfig"){

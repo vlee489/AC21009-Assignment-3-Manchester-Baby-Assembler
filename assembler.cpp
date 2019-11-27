@@ -177,6 +177,7 @@ void processInputFiles(const string& txtFile){
 
     string line;
     while (getline(reader, line)){
+        cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
         cout << "reading line: " << line << endl;
         string chunk = ""; //Used to temp hold chars as we process them
         vector<string> tempVector; // creates a temp vector for holding strings
@@ -203,6 +204,7 @@ void processInputFiles(const string& txtFile){
  * Processes the assembly file in the processedInput Vector into variable and instruction containers
  */
 void processAssembly(){
+    cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
     cout << "Processing Assembly Code into instruction and symbol table" << endl;
     vector<string> vectorTemp; // This variable is a temp holding locations for the line we're processing at the time.
 
@@ -303,6 +305,7 @@ void processAssembly(){
  * @param writeFile the file to output the machine code to.
  */
 void outputMachineCode(const string& writeFile){
+    cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
     cout << "Starting output of machine code to text file" << endl;
     if(variableContainer.sizeOfVariableList() == 0 || instructionContainer.getInstructionListSize() ==0){
         throw INPUT_PROCESS_FAILED;

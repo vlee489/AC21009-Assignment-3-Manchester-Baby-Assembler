@@ -14,11 +14,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6d368ebb-dede-4f6a-9d9b-78ff803e4a35" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BabyCode/BabyTest1-MC.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BabyCode/BabyTest1-MC.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BabyTest1-Assembler.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/assembler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/assembler.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configSample.txt" beforeDir="false" afterPath="$PROJECT_DIR$/configSample.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/error.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/error.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/config.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/instructionList.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/instructionList.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/variableList.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/variableList.hpp" afterDir="false" />
     </list>
@@ -119,7 +116,7 @@
       <workItem from="1574796255957" duration="4118000" />
       <workItem from="1574864776531" duration="4620000" />
       <workItem from="1574869492917" duration="13448000" />
-      <workItem from="1574892330068" duration="4346000" />
+      <workItem from="1574892330068" duration="5235000" />
     </task>
     <servers />
   </component>

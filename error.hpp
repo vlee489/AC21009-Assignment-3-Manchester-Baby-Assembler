@@ -29,5 +29,7 @@
 #define MISS_MATCHING_VECTOR -507 // When the lines configuring the mnemoics and functions numbers aren't the same length
 #define LINE_NUMBER_TO_LARGE_FOR_BITS_DEFINED -508 //When the line Number takes more bits then the number of bits allocated in it in config.hpp
 #define FUNCTION_NUMBER_TO_LARGE_FOR_BITS_DEFINED -509 //When the function Number takes more bits then the number of bits allocated in it in config.hpp
+#define INVALID_CHAR_IN_CONFIG -510 //When there's a invalid char in the config file, e.g when you have a non decimal number when defining the function numbers
+#define MISSMATCHED_CONFIG_DETAILS -511 //When parts of config don't match, mainly numberOfInstructionsConfig and the number of mnemonics stated
 
 #endif //MBASSEMBLER_ERROR_HPP

@@ -13,13 +13,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d368ebb-dede-4f6a-9d9b-78ff803e4a35" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/configSample.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BabyCode/BabyTest1-MC.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BabyCode/BabyTest1-MC.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BabyTest1-Assembler.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/assembler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/assembler.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/config.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/configSample.txt" beforeDir="false" afterPath="$PROJECT_DIR$/configSample.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/error.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/error.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instructionList.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/instructionList.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/variableList.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/variableList.hpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,7 +31,6 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -76,7 +76,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="CMake Application.Assembler">
+  <component name="RunManager" selected="Makefile.all">
     <configuration name="Assembler" type="CMakeRunConfiguration" factoryName="Application" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="MBAssembler" TARGET_NAME="Assembler" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="MBAssembler" RUN_TARGET_NAME="Assembler">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -87,10 +87,22 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="all" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/makefile" target="all" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="CMake Application.Assembler" />
       <item itemvalue="CMake Application.tester" />
+      <item itemvalue="Makefile.all" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Makefile.all" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -107,7 +119,7 @@
       <workItem from="1574796255957" duration="4118000" />
       <workItem from="1574864776531" duration="4620000" />
       <workItem from="1574869492917" duration="13448000" />
-      <workItem from="1574892330068" duration="575000" />
+      <workItem from="1574892330068" duration="4346000" />
     </task>
     <servers />
   </component>

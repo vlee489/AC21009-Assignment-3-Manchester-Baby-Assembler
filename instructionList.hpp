@@ -27,7 +27,7 @@ public:
 
 instruction instructionList::getItemInInstructionList(int vectorLocation) {
     // Check whether the location is valid for the vector
-    if(vectorLocation > instructionList.size() || vectorLocation < 0) {
+    if(vectorLocation > (int)instructionList.size() || vectorLocation < 0) {
         throw OUTSIDE_OF_VECTOR_RANGE;
     }
     return instructionList.at(vectorLocation);

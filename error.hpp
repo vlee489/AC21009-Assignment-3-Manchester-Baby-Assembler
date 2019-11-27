@@ -27,5 +27,7 @@
 #define FILE_IO_ERROR -505 // can't open file
 #define VARIABLE_USED_BUT_NOT_DEFINED -506 //when a variable is used but not defined in the assembly
 #define MISS_MATCHING_VECTOR -507 // When the lines configuring the mnemoics and functions numbers aren't the same length
+#define LINE_NUMBER_TO_LARGE_FOR_BITS_DEFINED -508 //When the line Number takes more bits then the number of bits allocated in it in config.hpp
+#define FUNCTION_NUMBER_TO_LARGE_FOR_BITS_DEFINED -509 //When the function Number takes more bits then the number of bits allocated in it in config.hpp
 
 #endif //MBASSEMBLER_ERROR_HPP

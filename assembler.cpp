@@ -6,6 +6,7 @@
 #include <vector>
 #include <fstream>
 #include <algorithm>
+#include <sstream>
 #include "error.hpp"
 #include "variableList.hpp"
 #include "sharedLibrary.hpp"
@@ -16,22 +17,122 @@ using namespace std;
 vector<vector<string>> processedInput; // Holds the input file after it's cleaned up
 variableList variableContainer; // Holds all the variables used in the assembly file
 instructionList instructionContainer; // Holds all the instructions states in the assembly file
+const string arrayMnemonics[7] = {"JMP", "JRP", "LDN", "STO", "SUB", "CMP", "STP"};
+const int arrayFunctionNo[7] =  {0 ,1, 2, 3, 4, 6, 7};
 
-// The following 2 lines define the mnemonics and function numbers.
-// so the first item in each array should correspond, and the second item etc...
-const vector<string> mnemonics {"JMP", "JRP", "LDN", "STO", "SUB", "CMP", "STP"};
-const vector<int> functionNumbers {0 ,1, 2, 3, 4, 6, 7};
+vector<string> mnemonics;
+vector<int> functionNumbers;
+
+/**
+ * sets ip program vectors
+ */
+void setup(){
+    //places the mnemonic and function Numbers from their arrays into their vectors
+    for(auto &item : arrayMnemonics){
+        mnemonics.push_back(item);
+    }
+    for(auto &item : arrayFunctionNo){
+        functionNumbers.push_back(item);
+    }
+}
+
+/**
+ * Allows for setting custom mnemonics and function numbers via a config txt file
+ * @param configFile the config txt file to go off of.
+ */
+void configMnemonicsAndFunctionNumbers(string configFile){
+    ifstream reader(configFile);
+
+    if (!reader) {
+        cout << "Error opening config file" << endl;
+        throw FILE_IO_ERROR;
+    }
+
+    string line;
+    while (getline(reader, line)){    // read file line by line
+        string option;
+        for(auto &c : line){
+            if(c == ':'){
+                break;
+            }else{
+                option+= c;
+            }
+        }
+
+        if(option == "mnemonics"){ //if we find the keyword
+            mnemonics.clear();
+            string newMnemonics = "";
+            bool startOfInput = false;
+            //This gets all the chars between the backets in the config file
+            for(auto &c : line){
+                if(c == '['){
+                    startOfInput = true;
+                }else if(startOfInput && c != ']'){
+                    newMnemonics += c;
+                }else if(c == ']'){
+                    break;
+                }
+            }
+            stringstream mnemonicsStream (newMnemonics);
+            string temp;
+            while(getline(mnemonicsStream, temp, ' ')){
+                mnemonics.push_back(temp);
+            }
+        }else if(option == "functionNumbers"){
+            functionNumbers.clear();
+            string newFunctionNo = "";
+            bool startOfInput = false;
+            //This gets all the chars between the backets in the config file
+            for(auto &c : line){
+                if(c == '['){
+                    startOfInput = true;
+                }else if(startOfInput && c != ']'){
+                    newFunctionNo += c;
+                }else if(c == ']'){
+                    break;
+                }
+            }
+            stringstream functionNoStream (newFunctionNo);
+            string temp;
+            while(getline(functionNoStream, temp, ' ')){
+                functionNumbers.push_back(stoi(temp));
+            }
+        }
+    }
+    // Checks if the size of both vectos are the same
+    if(mnemonics.size() != functionNumbers.size()){
+        throw MISS_MATCHING_VECTOR;
+    }
+}
+
+/**
+ * Prints out config and the mnemonics and function Number combos
+ */
+void printConfig(){
+    cout << "================================================" << endl;
+    cout << "                    The config" << endl;
+    cout << "-------------------------------------------------" << endl;
+    cout << "numberOfInstructionsConfig: " << numberOfInstructionsConfig << endl;
+    cout << "numberOfMemoryLocationsConfig: " << numberOfMemoryLocationsConfig << endl;
+    cout << "bitsNotUserAfterLineNo: " << bitsNotUserAfterLineNo << endl;
+    cout << "bitsNotUsedAfterFunctionNumber: " << bitsNotUsedAfterFunctionNumber << endl;
+    cout << "bitsUsedForLineNo: " << bitsUsedForLineNo << endl;
+    cout << "bitsUsedForFunctionNo: " << bitsUsedForFunctionNo << endl;
+    cout << "================================================" << endl;
+    cout << "          Mnemonics & Function Numbers" << endl;
+    cout << "-------------------------------------------------" << endl;
+    for(int loc = 0; loc < (int)mnemonics.size(); loc++){
+        cout << mnemonics.at(loc) << " | " << functionNumbers.at(loc) << endl;
+    }
+    cout << "================================================" << endl;
+}
 
 /**
  * Turns mnemonic into function numbers
  * @param mnemonic
  * @return the function number
  */
-int mnemonicToInt(string mnemonic){
-    // Checks if the size of both vectos are the same
-    if(mnemonics.size() != functionNumbers.size()){
-        throw MISS_MATCHING_VECTOR;
-    }
+int mnemonicToInt(const string& mnemonic){
 
     // for each item in the mnemonics vector
     for(int loc = 0; loc < (int)mnemonics.size(); loc++){
@@ -51,7 +152,8 @@ int mnemonicToInt(string mnemonic){
  * Takes the input assembly txt file and places the cleaned contents into the processedInput vector
  * @param txtFile the file to read into
  */
-void processInputFiles(string txtFile){
+void processInputFiles(const string& txtFile){
+
     ifstream reader(txtFile);
 
     if (!reader) {
@@ -158,7 +260,7 @@ void processAssembly(){
  * Re-asembles the Variable and Instruction containers into machine code
  * @param writeFile the file to output the machine code to.
  */
-void outputMachineCode(string writeFile){
+void outputMachineCode(const string& writeFile){
     if(variableContainer.sizeOfVariableList() == 0 || instructionContainer.getInstructionListSize() ==0){
         throw INPUT_PROCESS_FAILED;
     }
@@ -195,10 +297,12 @@ void outputMachineCode(string writeFile){
         }
         // get the line number and work out the binary version
         string binaryLineNo = intToBinary(lineNo);
+        if(binaryLineNo.length() > bitsUsedForLineNo){
+            throw LINE_NUMBER_TO_LARGE_FOR_BITS_DEFINED;
+        }
         stringBuilder += reverseString(binaryLineNo); // places line number into the line output string
         // This for loop places the spacing between the line number and function number
-        int spacingNeeded = lineNumberAndNotUsedLinesConfig - binaryLineNo.length();
-        cout << "space needed" << spacingNeeded << endl;
+        int spacingNeeded = (bitsUsedForLineNo + bitsNotUserAfterLineNo) - (int)binaryLineNo.length();
         for(int x = 0; x < spacingNeeded; x++){
             stringBuilder += '0';
         }
@@ -206,9 +310,10 @@ void outputMachineCode(string writeFile){
         // get the function number and output it into the line output string
         string binaryFunctionNo = intToBinary(tempInstruct.getFunctionNumber());
         stringBuilder += reverseString(binaryFunctionNo);
-
-        spacingNeeded = functionNumberAndNotUsedLinesConfig - binaryFunctionNo.length();
-        cout << "space needed" << spacingNeeded << endl;
+        if(binaryFunctionNo.length() > bitsUsedForLineNo){
+            throw FUNCTION_NUMBER_TO_LARGE_FOR_BITS_DEFINED;
+        }
+        spacingNeeded = (bitsUsedForFunctionNo + bitsNotUsedAfterFunctionNumber) - (int)binaryFunctionNo.length();
         for(int x = 0; x < spacingNeeded; x++){
             stringBuilder += '0';
         }
@@ -238,8 +343,10 @@ void printVectorLine(){
     cout << endl << "=======================" << endl;
 }
 
-
+/**
 int main(){
+    setup();
+    printConfig();
     processInputFiles("test.txt");
     processAssembly();
     try {
@@ -248,5 +355,15 @@ int main(){
         cout << "exception: " << e << endl;
     }
 
+}
+ */
+
+int main(){
+    setup();
+    printConfig();
+    cout << "New config" << endl;
+    updateConfig("config.txt");
+    configMnemonicsAndFunctionNumbers("config.txt");
+    printConfig();
 }
 

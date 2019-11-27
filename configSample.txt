@@ -1,0 +1,8 @@
+numberOfInstructionsConfig: 7
+numberOfMemoryLocationsConfig: 32
+bitsNotUserAfterLineNo: 8
+bitsNotUsedAfterFunctionNumber: 16
+bitsUsedForLineNo: 5
+bitsUsedForFunctionNo: 3
+mnemonics: [JMP, JRP, LDN, STO, SUB, CMP STP]
+functionNumbers: [0 1 2 3 4 6 7]

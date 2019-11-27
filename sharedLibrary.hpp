@@ -43,6 +43,27 @@ string memoryLocationToBinary(int inputInt){
 }
 
 /**
+ * turns an int into binary with no trailing 0s
+ * @param inputInt input number
+ * @return string binary
+ */
+string intToBinary(int inputInt){
+    string binary = bitset<32>(inputInt).to_string();
+    bool hitAOne = false;
+    string finaloutput = "";
+    //this for loop removes any trailing 0s
+    for(auto &l : binary){
+        if(l != '0'){
+            finaloutput += l;
+            hitAOne = true;
+        }else if(hitAOne){
+            finaloutput += l;
+        }
+    }
+    return finaloutput;
+}
+
+/**
  * Reverses a string
  * @param stringIn string to be reversed
  * @return the reversed string

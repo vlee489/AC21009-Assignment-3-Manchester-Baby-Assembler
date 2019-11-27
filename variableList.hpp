@@ -99,13 +99,17 @@ void variableList::setMemoryLocation(string variableName, int memoryLocation) {
  */
 void variableList::bulkSetMemoryLocation(int fromMemoryLocation) {
     // Checks if we have enough memory locations to allocate to all variables
-    if((numberOfMemoryLocationsConfig-fromMemoryLocation) < (int)variableContainer.size()){
+    if((numberOfMemoryLocationsConfig-fromMemoryLocation)+1 < (int)variableContainer.size()){
         throw NOT_ENOUGH_MEMORY;
     }else{
         int memoryLocationBeingSet = fromMemoryLocation;
         for(auto & i : variableContainer){
-            i.setMemoryLocation(memoryLocationBeingSet);
-            memoryLocationBeingSet++;
+            i.setMemoryLocation(memoryLocationBeingSet); // set memory location
+            memoryLocationBeingSet++; //increment the memory location being set
+            // if we have too many variables for after the instructions we use location 0 to store a variable
+            if(memoryLocationBeingSet == numberOfMemoryLocationsConfig){
+                memoryLocationBeingSet = 0;
+            }
         }
         return;
     }

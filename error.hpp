@@ -6,9 +6,6 @@
 #ifndef MBASSEMBLER_ERROR_HPP
 #define MBASSEMBLER_ERROR_HPP
 
-// Everything is awesome
-#define SUCCESS 0
-
 // Error for variable bank
 #define LONG_VALUE_TO_LARGE -101 // When the Long is > 32 bits large
 #define OUT_OF_MEMORY_RANGE -102 // When the memory location is outside the bank of 32 locations
@@ -29,5 +26,6 @@
 #define INVALID_INPUT -504 // Invalid parm given
 #define FILE_IO_ERROR -505 // can't open file
 #define VARIABLE_USED_BUT_NOT_DEFINED -506 //when a variable is used but not defined in the assembly
+#define MISS_MATCHING_VECTOR -507 // When the lines configuring the mnemoics and functions numbers aren't the same length
 
 #endif //MBASSEMBLER_ERROR_HPP

@@ -168,7 +168,7 @@ void variableList::printVariableList() {
 }
 
 variable variableList::getVariable(int vectorLocation) {
-    if(vectorLocation >= variableContainer.size() || vectorLocation < 0){
+    if(vectorLocation > variableContainer.size() || vectorLocation < 0){
         throw OUTSIDE_OF_VECTOR_RANGE;
     }
     return variableContainer.at(vectorLocation);

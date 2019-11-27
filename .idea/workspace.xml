@@ -14,9 +14,9 @@
   <component name="ChangeListManager">
     <list default="true" id="6d368ebb-dede-4f6a-9d9b-78ff803e4a35" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BabyCode/BabyTest1-MC.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BabyCode/BabyTest1-MC.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BabyTest1-Assembler.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Sample files/BabyTest1-Assembler.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assembler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/assembler.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/error.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/error.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharedLibrary.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/sharedLibrary.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/variableList.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/variableList.hpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,8 +54,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/Sample files" />
+      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Sample files" />

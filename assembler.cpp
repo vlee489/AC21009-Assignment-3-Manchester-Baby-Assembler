@@ -132,9 +132,6 @@ void processAssembly(){
     // This assigns the memory locations of the variables, from the last instructions
     variableContainer.bulkSetMemoryLocation(instructionContainer.getInstructionListSize()+1);
 
-    instructionContainer.printInstructionList();
-    variableContainer.printVariableList();
-
 }
 
 void outputMachineCode(string writeFile){
@@ -154,10 +151,16 @@ void outputMachineCode(string writeFile){
     outputFile << "00000000000000000000000000000000" << endl;
 
     // for each instruction in the Instruction Container
-    for(int i = 0; i < instructionContainer.getInstructionListSize(); i++){
+    for(int i = 0; i < (int)instructionContainer.getInstructionListSize(); i++){
         instruction tempInstruct = instructionContainer.getItemInInstructionList(i);
         string stringBuilder = "";
-        int lineNo = variableContainer.getMemoryLocation(tempInstruct.getVariable());
+        int lineNo = 0;
+        try {
+            lineNo = variableContainer.getMemoryLocation(tempInstruct.getVariable());
+        }catch(...){
+            //This try catch is to catch any time we looks for a variable that doesn't exist,
+            //like when the string is blank, e.g. STP command
+        }
         stringBuilder += reverseString(memoryLocationToBinary(lineNo));
         stringBuilder += "00000000";
         stringBuilder += reverseString(instructionToBinary(tempInstruct.getFunctionNumber()));
@@ -167,7 +170,7 @@ void outputMachineCode(string writeFile){
 
     // for each variable in variable container
     for(int i = 0; i < variableContainer.sizeOfVariableList(); i++){
-        outputFile << reverseString(memoryLocationToBinary(variableContainer.getVariable(i).getVariableValue())) << endl;
+        outputFile << reverseString(toBinary(variableContainer.getVariable(i).getVariableValue())) << endl;
     }
 
 }
@@ -186,6 +189,11 @@ void printVectorLine(){
 int main(){
     processInputFiles("test.txt");
     processAssembly();
-    outputMachineCode("output.txt");
+    try {
+        outputMachineCode("output.txt");
+    }catch(int& e){
+        cout << "exception: " << e << endl;
+    }
+
 }
 

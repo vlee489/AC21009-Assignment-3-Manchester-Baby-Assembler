@@ -297,19 +297,27 @@ void outputMachineCode(const string &writeFile) {
         throw FILE_IO_ERROR;
     }
 
+    string stringBuilder = ""; // holds string to place into machine code output
+
     // if the variables and instruction to output to machine code are
     // less the the number of memory locations we start the first line as a 0s
     if ((int) variableContainer.sizeOfVariableList() + (int) instructionContainer.getInstructionListSize() <
         numberOfMemoryLocationsConfig - 1) {
-        outputFile << "00000000000000000000000000000000" << endl;
-        cout << "Outputting: " << "00000000000000000000000000000000" << endl;
+        // we do a for loop for the total width of the memory
+        int total = bitsNotUserAfterLineNo+bitsNotUsedAfterFunctionNumber+bitsUsedForLineNo+bitsUsedForFunctionNo;
+        for(int i = 0; i < total; i++){
+            stringBuilder+='0';
+        }
+        outputFile << stringBuilder << endl;
+        cout << "Outputting: " << stringBuilder << endl;
+        stringBuilder = "";
     }
 
 
     // for each instruction in the Instruction Container
     for (int i = 0; i < (int) instructionContainer.getInstructionListSize(); i++) {
         instruction tempInstruct = instructionContainer.getItemInInstructionList(i);
-        string stringBuilder = ""; // holds string to place into machine code output
+        stringBuilder = ""; // holds string to place into machine code output
         // Isn't a jump we process like normal
         int lineNo = 0;
         if(tempInstruct.getFunctionNumber() == jumpFunctionNumber){
@@ -394,8 +402,8 @@ int main(int argc, char *argv[]){
             return 0;
         }catch(int& e){
             cout << "Looks like you've hit an error in the assembler" << endl;
-            cout << "Please refer to the error documentation" << endl;
             cout << "exception code: " << e << endl;
+            explainError(e);
         }catch(exception& e){
             cout << "The assembler has hit into an standered error" << endl;
             cout << "Probably the assembler's programmer's fauly" << endl;
@@ -420,8 +428,8 @@ int main(int argc, char *argv[]){
             return 0;
         }catch(int& e){
             cout << "Looks like you've hit an error in the assembler" << endl;
-            cout << "Please refer to the error documentation" << endl;
             cout << "exception code: " << e << endl;
+            explainError(e);
         }catch(exception& e){
             cout << "The assembler has hit into an standered error" << endl;
             cout << "Probably the assembler's programmer's fauly" << endl;
@@ -448,8 +456,8 @@ int main(int argc, char *argv[]){
             return 0;
         }catch(int& e){
             cout << "Looks like you've hit an error in the assembler" << endl;
-            cout << "Please refer to the error documentation" << endl;
             cout << "exception code: " << e << endl;
+            explainError(e);
         }catch(exception& e){
             cout << "The assembler has hit into an standered error" << endl;
             cout << "Probably the assembler's programmer's fauly" << endl;

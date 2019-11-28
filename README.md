@@ -74,7 +74,8 @@ should be used to surround each option.
 - **mnemonics:** : Contains the mnemonics used in the assembly file.
 - **functionNumbers** : Corresponding function number for the mnemonic.
 
-For these 2 items you need to have each item in either list match up.
+For these 2 items you need to have each item in either list match up. 
+So item one in each list are a pair, and item two are a pair etc...
 
 e.g. For the example above `JMP` will have the function number `0`. 
 and then `SUB` would match up with the function number `4`.

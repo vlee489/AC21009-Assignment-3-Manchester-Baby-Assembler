@@ -26,18 +26,18 @@ To use on UNIX use the follow command
 ***Any arguments with a \* are required***
 
 ### Input File
-    This is your input text file with your assembly code.
+   This is your input text file with your assembly code.
     
 ### Output File
-    This is the text file you want to output the Machine Code to.
+   This is the text file you want to output the Machine Code to.
     
 ### Config File
-    This is the config file you want to use if you want a custom Config
-    *See bellow for documentation*
+   This is the config file you want to use if you want a custom Config
+   *See bellow for documentation*
     
 ### Debug
-    Here you can use `-d` to enable to full debug dump.
-    This dumps all debug into from all the Instruction and Variable containers as they run.
+   Here you can use `-d` to enable to full debug dump.
+   This dumps all debug into from all the Instruction and Variable containers as they run.
     
 ## Config File Usage
 *See the included `configSample.txt` for an example.*

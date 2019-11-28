@@ -15,6 +15,7 @@ int bitsNotUserAfterLineNo = 8;
 int bitsNotUsedAfterFunctionNumber = 16;
 int bitsUsedForLineNo = 5;
 int bitsUsedForFunctionNo = 3;
+string jumpMnenomic = "JMP";
 
 
 void updateConfig(const string& txtConfig){
@@ -30,7 +31,7 @@ void updateConfig(const string& txtConfig){
         string option = "";
         string newVariable = "";
         bool optionFormed = false;
-        //This for loop splits up each line into the option and the variable
+        //This for loop splits up each line into the option and the label
         for(auto &c : line){
             if(c == ';'){
                 break;

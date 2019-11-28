@@ -2,8 +2,8 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="MBAssembler" targetName="Assembler" />
       <config projectName="MBAssembler" targetName="tester" />
+      <config projectName="MBAssembler" targetName="Assembler" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -14,8 +14,18 @@
   <component name="ChangeListManager">
     <list default="true" id="6d368ebb-dede-4f6a-9d9b-78ff803e4a35" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/variableList.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/variableList.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BabyCode/BabyTest1-Assembler.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BabyCode/BabyTest1-Assembler.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BabyCode/BabyTest1-README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BabyCode/BabyTest1-README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BabyTest1-Assembler.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BabyTest1-Assembler.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sample files/BabyTest1-README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Sample files/BabyTest1-README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assembler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/assembler.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/config.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/error.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/error.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instruction.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/instruction.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instructionList.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/instructionList.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/output.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +36,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -39,6 +50,7 @@
   <component name="ProjectId" id="1Tva3gW7otjoz6KTsFuUCo4kPsa" />
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="ToolWindowDebug.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -114,7 +126,8 @@
       <workItem from="1574796255957" duration="4118000" />
       <workItem from="1574864776531" duration="4620000" />
       <workItem from="1574869492917" duration="13448000" />
-      <workItem from="1574892330068" duration="8995000" />
+      <workItem from="1574892330068" duration="17114000" />
+      <workItem from="1574950469629" duration="4313000" />
     </task>
     <servers />
   </component>

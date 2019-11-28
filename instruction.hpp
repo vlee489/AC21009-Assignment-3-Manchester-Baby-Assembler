@@ -15,19 +15,23 @@ using namespace std;
 
 class instruction{
     string variable;
+    string label;
     int functionNumber;
     int memoryLocation;
 
 public:
     instruction();
-    instruction(int);
+    explicit instruction(int);
     instruction(string, int);
+    instruction(string, int, string);
     void setData(string, int);
     void setFunctionNumber(int);
     void setMemoryLocation(int);
     void setVariable(string variableInput){this->variable = std::move(variableInput);}
+    void setLabel(string labelInput){this->label = std::move(labelInput);}
     int getFunctionNumber();
     int getMemoryLocation();
+    string getLabel(){return this->label;}
     string getVariable(){return this->variable;}
 };
 
@@ -38,6 +42,7 @@ instruction::instruction() {
     this->variable = "";
     this->functionNumber = -1;
     this->memoryLocation = -1;
+    this->label = "";
 }
 
 /**
@@ -67,6 +72,18 @@ instruction::instruction(string variableInput, int functionInput) {
     this->variable = std::move(variableInput);
     this->functionNumber = functionInput;
     this->memoryLocation = -1;
+    this->label = "";
+}
+
+instruction::instruction(string variableInput, int functionInput, string labelInput) {
+    // Checks weather the function that us being set exists
+    if(functionInput < 0 || functionInput > numberOfInstructionsConfig){
+        throw INSTRUCTION_DOES_NOT_EXIST;
+    }
+    this->variable = std::move(variableInput);
+    this->functionNumber = functionInput;
+    this->memoryLocation = -1;
+    this->label = std::move(labelInput);
 }
 
 /**

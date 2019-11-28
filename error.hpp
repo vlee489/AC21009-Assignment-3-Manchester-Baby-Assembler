@@ -92,7 +92,7 @@ void explainError(int e){
             break;
         case -503 :
             cout << "Input Process Failed" << endl;
-            cout << "Assembler failed to input you assembly file into it's data structure" << endl
+            cout << "Assembler failed to input you assembly file into it's data structure" << endl;
             break;
         case -504 :
             cout << "Invalid Input" << endl;

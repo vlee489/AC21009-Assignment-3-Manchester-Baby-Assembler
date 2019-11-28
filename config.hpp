@@ -33,11 +33,11 @@ void updateConfig(const string& txtConfig){
         bool optionFormed = false;
         //This for loop splits up each line into the option and the label
         for(auto &c : line){
-            if(c == ';'){
+            if(c == ';'){ //semicolons are used for comments so anything at and after the semicolon can be ignored
                 break;
             }else if(c != ':' && !optionFormed){
                 option += c;
-            }else if(c == ':'){
+            }else if(c == ':'){ // use use colon to split the option and the value
                 optionFormed = true;
             }else{
                 if(isdigit(c)){
@@ -64,7 +64,7 @@ void updateConfig(const string& txtConfig){
             }
         }
     }
-    reader.close();
+    reader.close(); //close the config text file
 }
 
 #endif //MBASSEMBLER_CONFIG_HPP

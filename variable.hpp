@@ -47,6 +47,7 @@ variable::variable() {
  * @param inputLong The Long to be set
  */
 variable::variable(string inputString, long inputLong) {
+    // checks if the input number is too big
     if(inputLong > 4294967295){
         throw LONG_VALUE_TO_LARGE;
     }
@@ -72,6 +73,7 @@ void variable::setMemoryLocation(int inputMemory) {
  * @param inputLong The Long to be set
  */
 void variable::setVariableValue(long inputLong) {
+    // checks if the input number is too big
     if(inputLong > 4294967295){
         throw LONG_VALUE_TO_LARGE;
     }else{
@@ -89,6 +91,7 @@ void variable::assign(string inputString, long inputLong, int inputMemory) {
     if(inputMemory > (numberOfMemoryLocationsConfig-1) || inputMemory < 0){
         throw OUT_OF_MEMORY_RANGE;
     }
+    // checks if the input number is too big
     if(inputLong > 4294967295){
         throw LONG_VALUE_TO_LARGE;
     }
@@ -103,6 +106,7 @@ void variable::assign(string inputString, long inputLong, int inputMemory) {
  * @param inputLong The Long to be set
  */
 void variable::assign(string inputString, long inputLong) {
+    // checks if the input number is too big
     if(inputLong > 4294967295){
         throw LONG_VALUE_TO_LARGE;
     }

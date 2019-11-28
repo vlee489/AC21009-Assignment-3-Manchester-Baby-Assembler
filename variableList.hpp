@@ -170,7 +170,7 @@ int variableList::sizeOfVariableList() {
 void variableList::printVariableList() {
     cout << "==========================" << endl;
     cout << "Variable Vector List" << endl;
-    for(auto & i : variableContainer){
+    for(auto & i : variableContainer){ // for each item in the vector
         cout << "Variable Name: " << i.getVariableName() << " | Variable Value: " << i.getVariableValue() << " | Memory Address: " << i.getMemoryLocation() << endl;
     }
     cout << "==========================" << endl;

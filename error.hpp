@@ -41,6 +41,7 @@ using namespace std;
  * @param e the error code
  */
 void explainError(int e){
+    // This just looks for the error and prints out the reason that error will occur.
     cout << "~~~~~~~~~~~~~" << endl;
     cout << "  meaning" << endl;
     switch(e){

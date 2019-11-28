@@ -422,6 +422,7 @@ int main(int argc, char *argv[]){
         string outFile = argv[2];
         string configFile = argv[3];
         try {
+            cout << "Updating config from Text file" << endl;
             updateConfig(configFile);
             configMnemonicsAndFunctionNumbers(configFile);
             cout << "Please check the new configuration" << endl;
@@ -449,6 +450,7 @@ int main(int argc, char *argv[]){
         string outFile = argv[2];
         string configFile = argv[3];
         try {
+            cout << "Updating config from Text file" << endl;
             updateConfig(configFile);
             configMnemonicsAndFunctionNumbers(configFile);
             printConfig();

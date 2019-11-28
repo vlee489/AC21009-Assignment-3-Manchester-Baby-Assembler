@@ -171,6 +171,11 @@ void processInputFiles(const string &txtFile) {
 
     ifstream reader(txtFile);
 
+    //if nothing is passed in, we didn't get a valid input
+    if (txtFile.empty()) {
+        throw INVALID_INPUT;
+    }
+
     if (!reader) {
         cout << "Error opening input file" << endl;
         throw FILE_IO_ERROR;
@@ -287,11 +292,14 @@ void outputMachineCode(const string &writeFile) {
     if (variableContainer.sizeOfVariableList() == 0 || instructionContainer.getInstructionListSize() == 0) {
         throw INPUT_PROCESS_FAILED;
     }
+    //if nothing is passed in, we didn't get a valid input
     if (writeFile.empty()) {
         throw INVALID_INPUT;
     }
 
+    //opens file to write to it
     ofstream outputFile(writeFile);
+    // we check if we opened the file correctly
     if (!outputFile.is_open()) {
         cout << "Error opening input file" << endl;
         throw FILE_IO_ERROR;
@@ -308,8 +316,8 @@ void outputMachineCode(const string &writeFile) {
         for(int i = 0; i < total; i++){
             stringBuilder+='0';
         }
-        outputFile << stringBuilder << endl;
-        cout << "Outputting: " << stringBuilder << endl;
+        outputFile << stringBuilder << endl; // output string to txt file
+        cout << "Outputting: " << stringBuilder << endl; // output line to console
         stringBuilder = "";
     }
 
@@ -359,14 +367,14 @@ void outputMachineCode(const string &writeFile) {
 
         outputFile << stringBuilder << endl; //output line to file
 
-        cout << "Outputting: " << stringBuilder << endl;
+        cout << "Outputting: " << stringBuilder << endl;// output line to console
     }
 
     // for each variable in variable container
     for (int i = 0; i < variableContainer.sizeOfVariableList(); i++) {
         string stringBuilder = reverseString(toBinary(variableContainer.getVariable(i).getVariableValue()));
-        outputFile << stringBuilder << endl;
-        cout << "Outputting: " << stringBuilder << endl;
+        outputFile << stringBuilder << endl;//output line to file
+        cout << "Outputting: " << stringBuilder << endl;// output line to console
     }
 
 }
@@ -392,6 +400,7 @@ int main(int argc, char *argv[]){
         cout << "You need a min of 2 arguments" << endl;
         return -1;
     }
+    //run assembler with file input/output
     if(argc == 3){
         string inputFile = argv[1];
         string outFile = argv[2];
@@ -410,6 +419,7 @@ int main(int argc, char *argv[]){
             cout << e.what() << endl;
         }
     }
+    //run assembler with file input/output and a custom config
     if(argc == 4){
         string inputFile = argv[1];
         string outFile = argv[2];
@@ -436,7 +446,7 @@ int main(int argc, char *argv[]){
             cout << e.what() << endl;
         }
     }
-
+    //run assembler with file input/output , custom config and dump all debug info to the console
     if(argc == 5 && strncmp(argv[4], "-d", 2) == 0){
         cout << "RUNNING WITH DEBUG INFO" << endl;
         string inputFile = argv[1];

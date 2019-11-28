@@ -41,6 +41,7 @@ using namespace std;
  * @param e the error code
  */
 void explainError(int e){
+    // This just looks for the error and prints out the reason that error will occur.
     cout << "~~~~~~~~~~~~~" << endl;
     cout << "  meaning" << endl;
     switch(e){
@@ -92,7 +93,7 @@ void explainError(int e){
             break;
         case -503 :
             cout << "Input Process Failed" << endl;
-            cout << "Assembler failed to input you assembly file into it's data structure" << endl
+            cout << "Assembler failed to input you assembly file into it's data structure" << endl;
             break;
         case -504 :
             cout << "Invalid Input" << endl;

@@ -53,10 +53,10 @@ string intToBinary(int inputInt){
     string finaloutput = "";
     //this for loop removes any trailing 0s
     for(auto &l : binary){
-        if(l != '0'){
+        if(l != '0'){ //we wait till we hey a char that's a 1 before doing anything
             finaloutput += l;
             hitAOne = true;
-        }else if(hitAOne){
+        }else if(hitAOne){ // we accept all 1/0 after we hit the first 1
             finaloutput += l;
         }
     }
@@ -70,7 +70,7 @@ string intToBinary(int inputInt){
  */
 string reverseString(string stringIn){
     string temp = stringIn;
-    reverse(temp.begin(), temp.end());
+    reverse(temp.begin(), temp.end()); //reverses string
     return temp;
 }
 

@@ -75,9 +75,9 @@ void instructionList::bulkSetMemoryLocation(int fromMemoryLocation) {
     }else{
         int memoryLocationBeingSet = fromMemoryLocation;
         // for each instruction we set the memory location then increment the instruction by one
-        for(auto & i : instructionList){
-            i.setMemoryLocation(memoryLocationBeingSet);
-            memoryLocationBeingSet++;
+        for(auto & i : instructionList){ // for each object in vector
+            i.setMemoryLocation(memoryLocationBeingSet); // set memeory address
+            memoryLocationBeingSet++; // increment memory by one
         }
         return;
     }
@@ -89,7 +89,7 @@ void instructionList::bulkSetMemoryLocation(int fromMemoryLocation) {
 void instructionList::printInstructionList() {
     cout << "==========================" << endl;
     cout << "Instruction Vector List" << endl;
-    for(auto & i : instructionList){
+    for(auto & i : instructionList){ // for each each object in vector
         cout << "Function Number : " << i.getFunctionNumber() << " | Variable Used: " << i.getVariable() << " | Memory Address: " << i.getMemoryLocation() << " | Label: " << i.getLabel() << endl;
     }
     cout << "==========================" << endl;
@@ -98,11 +98,11 @@ void instructionList::printInstructionList() {
 /**
  * Checks if labels exists in list already
  * @param labelInput the label to check for
- * @return ture if it exists, else false
+ * @return true if it exists, else false
  */
 bool instructionList::doesLabelExist(string labelInput) {
-    for(auto &item : instructionList){
-        if(item.getLabel() == labelInput){
+    for(auto &item : instructionList){ // for each object in vector
+        if(item.getLabel() == labelInput && !item.getLabel().empty()){ // if we get a match and the label isn't empty
             return true;
         }
     }
@@ -118,6 +118,7 @@ bool instructionList::doesLabelExist(string labelInput) {
  * @param labelInput the label to set to that instruction line
  */
 void instructionList::addInstructions(string variableName, int functionCode, const string& labelInput) {
+    // checks if item wti the same label exists already
     if(doesLabelExist(labelInput)){
         throw LABEL_ALREADY_EXISTS;
     }
@@ -126,13 +127,22 @@ void instructionList::addInstructions(string variableName, int functionCode, con
     instructionList.push_back(temp);
 }
 
+/**
+ * Returns the instruction by looking for the label attached to it
+ * @param label the label being looked for
+ * @return the instruction object needing to be returned
+ */
 instruction instructionList::getInstuctionViaLabel(string label) {
-    for(auto &item : instructionList){
-        if(item.getLabel() == label){
-            return item;
+    // we check if the label exists, if it doesn't we throw an error
+    if(!doesLabelExist(label)){
+        throw INSTRUCTION_DOES_NOT_EXIST;
+    }
+    for(auto &item : instructionList){ //looks through each object in vector
+        if(item.getLabel() == label){ //if we find the label matching
+            return item; //return the object
         }
     }
-    throw INSTRUCTION_DOES_NOT_EXIST;
+    throw INSTRUCTION_DOES_NOT_EXIST; // throw an error if we can't find a matching object
 }
 
 #endif //MBASSEMBLER_INSTRUCTIONLIST_HPP

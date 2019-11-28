@@ -89,7 +89,7 @@ These are all the possible error codes and their meanings.
 This error is when the the value passed through is too big to fit in the available memory size.
 
 #### -102 : Out of Memory Range
-When you look for a memory location that doesn't exist
+When you're look for a memory location that doesn't exist
 
 #### -103 : Variable Name Present
 When you've defined a variable already and you try to define it again
@@ -110,12 +110,14 @@ When the assembler looks at an non-existent vector location
 You've used a label on a instruction line twice
 
 #### -401 : Input too big
-When the input int/long is too big
+When the input int/long is too big for the function it's being imputed to
 
 #### -501 : No Instruction to process
 Assembler can't find instructions to process in the assembly file
 
 #### -502 : Unable to find START or END markers
+*this error was deprecated in commit* `d3ecd1616640e4163a91aeaf2d334c55b978d2c6`
+
 Can't find the `START` or/and `END` markers in the assembly file
 
 #### -503 : Input Process Failed
@@ -142,7 +144,7 @@ defined to hold the bits in machine code.
 When the function number of a variable is too large for the number of bits 
 defined to hold the bits in machine code.
 
-### -510 : Invalid char in config file
+#### -510 : Invalid char in config file
 When there's a invalid char in the config file,
 e.g when you have a non decimal number when defining the function numbers
 

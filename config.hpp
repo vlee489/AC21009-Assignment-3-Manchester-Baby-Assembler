@@ -15,7 +15,7 @@ int bitsNotUserAfterLineNo = 8;
 int bitsNotUsedAfterFunctionNumber = 16;
 int bitsUsedForLineNo = 5;
 int bitsUsedForFunctionNo = 3;
-string jumpMnenomic = "JMP";
+int jumpFunctionNumber = 0;
 
 
 void updateConfig(const string& txtConfig){
@@ -59,6 +59,8 @@ void updateConfig(const string& txtConfig){
                 bitsUsedForLineNo = stoi(newVariable);
             }else if(option == "bitsUsedForFunctionNo"){
                 bitsUsedForFunctionNo = stoi(newVariable);
+            }else if(option == "jumpFunctionNumber"){
+                jumpFunctionNumber = stoi(newVariable);
             }
         }
     }

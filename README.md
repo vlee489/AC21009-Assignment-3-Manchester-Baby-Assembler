@@ -49,6 +49,7 @@ bitsNotUserAfterLineNo: 8
 bitsNotUsedAfterFunctionNumber: 16
 bitsUsedForLineNo: 5
 bitsUsedForFunctionNo: 3
+jumpFunctionNumber: 0
 mnemonics: [JMP JRP LDN STO SUB CMP STP]
 functionNumbers: [0 1 2 3 4 6 7]
 ```
@@ -64,6 +65,7 @@ before the the int value you want to use that option.
 - **bitsNotUsedAfterFunctionNumber:** : This is the number of bits left blank after the Function Number.
 - **bitsUsedForLineNo:** : This is the number of bits used for the Line Number.
 - **bitsUsedForFunctionNo:** : This is the number of bits used for the Function Number.
+- **jumpFunctionNumber** : The function Number used for jump command
 
 ### Explanation of each config option accepting list
 
@@ -103,6 +105,9 @@ Assembly used a Instruction that doesn't exist in the instruction Set
 
 #### -302 : Vector Out of Range
 When the assembler looks at an non-existent vector location 
+
+#### -303 : Label Already Exists
+You've used a label on a instruction line twice
 
 #### -401 : Input too big
 When the input int/long is too big

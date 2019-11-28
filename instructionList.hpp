@@ -118,6 +118,9 @@ bool instructionList::doesLabelExist(string labelInput) {
  * @param labelInput the label to set to that instruction line
  */
 void instructionList::addInstructions(string variableName, int functionCode, const string& labelInput) {
+    if(doesLabelExist(labelInput)){
+        throw LABEL_ALREADY_EXISTS;
+    }
     // creates object and places into vector
     instruction temp(variableName, functionCode, labelInput);
     instructionList.push_back(temp);

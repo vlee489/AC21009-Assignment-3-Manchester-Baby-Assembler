@@ -312,8 +312,8 @@ void outputMachineCode(const string &writeFile) {
         string stringBuilder = ""; // holds string to place into machine code output
         // Isn't a jump we process like normal
         int lineNo = 0;
-        if(tempInstruct.getFunctionNumber() == 0){
-            lineNo = instructionContainer.getInstuctionViaLabel(tempInstruct.getLabel()).getMemoryLocation();
+        if(tempInstruct.getFunctionNumber() == jumpFunctionNumber){
+            lineNo = instructionContainer.getInstuctionViaLabel(tempInstruct.getVariable()).getMemoryLocation();
         }else{
             try {
                 lineNo = variableContainer.getMemoryLocation(tempInstruct.getVariable());

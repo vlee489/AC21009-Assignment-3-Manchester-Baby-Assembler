@@ -23,7 +23,7 @@ To use on UNIX use the follow command
 
 `./assembler.o [Input-File*] [Output-File*] [Config-File] [Debug]`
 
-***Any arguments with a \* are required***
+***Any arguments with a `*` are required***
 
 ### Input File
    This is your input text file with your assembly code.

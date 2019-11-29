@@ -14,12 +14,12 @@
 #include <iostream>
 using namespace std;
 
-int numberOfInstructionsConfig = 7;
+int numberOfInstructionsConfig = 8;
 int numberOfMemoryLocationsConfig = 32;
 int bitsNotUserAfterLineNo = 8;
-int bitsNotUsedAfterFunctionNumber = 16;
+int bitsNotUsedAfterFunctionNumber = 15;
 int bitsUsedForLineNo = 5;
-int bitsUsedForFunctionNo = 3;
+int bitsUsedForFunctionNo = 4;
 int jumpFunctionNumber = 0;
 
 

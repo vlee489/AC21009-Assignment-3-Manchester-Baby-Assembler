@@ -16,13 +16,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assembler.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/assembler.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/config.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/error.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/error.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/instructionList.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/instructionList.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/output.txt" beforeDir="false" afterPath="$PROJECT_DIR$/output.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sharedLibrary.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/sharedLibrary.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/variable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/variable.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/variableList.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/variableList.hpp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -123,7 +120,7 @@
       <workItem from="1574864776531" duration="4620000" />
       <workItem from="1574869492917" duration="13448000" />
       <workItem from="1574892330068" duration="17114000" />
-      <workItem from="1574950469629" duration="11670000" />
+      <workItem from="1574950469629" duration="14396000" />
     </task>
     <servers />
   </component>

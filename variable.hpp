@@ -61,6 +61,7 @@ variable::variable(string inputString, long inputLong) {
  * @param inputMemory memory location the variable should be placed into
  */
 void variable::setMemoryLocation(int inputMemory) {
+    // check if the memory location you want to set is within the range
     if(inputMemory > (numberOfMemoryLocationsConfig-1) || inputMemory < 0){
         throw OUT_OF_MEMORY_RANGE;
     }else{
@@ -88,6 +89,7 @@ void variable::setVariableValue(long inputLong) {
  * @param inputMemory memory location the variable should be placed into
  */
 void variable::assign(string inputString, long inputLong, int inputMemory) {
+    // check if the memory location you want to set is within the range
     if(inputMemory > (numberOfMemoryLocationsConfig-1) || inputMemory < 0){
         throw OUT_OF_MEMORY_RANGE;
     }

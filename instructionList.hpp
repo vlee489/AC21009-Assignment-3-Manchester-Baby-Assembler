@@ -73,7 +73,7 @@ void instructionList::bulkSetMemoryLocation(int fromMemoryLocation) {
     if((numberOfMemoryLocationsConfig-fromMemoryLocation) < (int)instructionList.size()){
         throw NOT_ENOUGH_MEMORY;
     }else{
-        int memoryLocationBeingSet = fromMemoryLocation;
+        int memoryLocationBeingSet = fromMemoryLocation; 
         // for each instruction we set the memory location then increment the instruction by one
         for(auto & i : instructionList){ // for each object in vector
             i.setMemoryLocation(memoryLocationBeingSet); // set memeory address

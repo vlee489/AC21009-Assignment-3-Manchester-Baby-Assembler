@@ -19,8 +19,9 @@ int jumpFunctionNumber = 0;
 
 
 void updateConfig(const string& txtConfig){
-    ifstream reader(txtConfig);
+    ifstream reader(txtConfig); //open file
 
+    //check if file opened correctly
     if (!reader) {
         cout << "Error opening config file" << endl;
         throw FILE_IO_ERROR;
@@ -28,6 +29,7 @@ void updateConfig(const string& txtConfig){
 
     string line;
     while (getline(reader, line)){ // read file line by line
+        // temp hold string as they're being formed
         string option = "";
         string newVariable = "";
         bool optionFormed = false;

@@ -26,15 +26,15 @@ vector<string> mnemonics;
 vector<int> functionNumbers;
 
 /**
- * sets ip program vectors
+ * sets up program vectors
  */
 void setup() {
     //places the mnemonic and function Numbers from their arrays into their vectors
-    for (auto &item : arrayMnemonics) {
-        mnemonics.push_back(item);
+    for (auto &item : arrayMnemonics) { // for each item in array
+        mnemonics.push_back(item); //place that ite into the vector
     }
-    for (auto &item : arrayFunctionNo) {
-        functionNumbers.push_back(item);
+    for (auto &item : arrayFunctionNo) { // for each item in array
+        functionNumbers.push_back(item); //place that ite into the vector
     }
 }
 
@@ -43,8 +43,10 @@ void setup() {
  * @param configFile the config txt file to go off of.
  */
 void configMnemonicsAndFunctionNumbers(string configFile) {
+    //open file
     ifstream reader(configFile);
 
+    //check it has opened correctly
     if (!reader) {
         cout << "Error opening config file" << endl;
         throw FILE_IO_ERROR;
@@ -53,6 +55,7 @@ void configMnemonicsAndFunctionNumbers(string configFile) {
     string line;
     while (getline(reader, line)) {    // read file line by line
         string option;
+        //gets the option out
         for (auto &c : line) {
             if (c == ':') {
                 break;
@@ -79,7 +82,7 @@ void configMnemonicsAndFunctionNumbers(string configFile) {
             string temp;
             //splits out the mnemonics into the vector
             while (getline(mnemonicsStream, temp, ' ')) {
-                mnemonics.push_back(temp);
+                mnemonics.push_back(temp); // place the mnemonics into vector
             }
         } else if (option == "functionNumbers") {
             functionNumbers.clear();
@@ -100,9 +103,9 @@ void configMnemonicsAndFunctionNumbers(string configFile) {
             //splits function numbers into function number
             while (getline(functionNoStream, temp, ' ')) {
                 try {
-                    functionNumbers.push_back(stoi(temp));
+                    functionNumbers.push_back(stoi(temp)); // place the mnemonics into vector
                 } catch (...) {
-                    throw INVALID_CHAR_IN_CONFIG;
+                    throw INVALID_CHAR_IN_CONFIG; // we find char that isn't a decimal in the option
                 }
             }
         }
@@ -197,15 +200,21 @@ void processInputFiles(const string &txtFile) {
             }
         }
         if(!chunk.empty()){
-            tempVector.push_back(chunk);
+            tempVector.push_back(chunk); //push the last item if there is one into the vector
         }
         // If the tempory vector for the line we just processed isn't empty we push it to the vector
         if (!tempVector.empty()) {
             processedInput.push_back(tempVector);
         }
     }
-    reader.close();
-    cout << "Read file Sucessful" << endl;
+    reader.close(); // close the reader
+
+    // Check if we have data to process.
+    if (processedInput.empty()) {
+        throw INPUT_PROCESS_FAILED;
+    }
+
+    cout << "Read file Successful" << endl;
 }
 
 /**
@@ -215,17 +224,14 @@ void processAssembly() {
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
     cout << "Processing Assembly Code into instruction and symbol table" << endl;
 
-    // Check if we have data to process.
-    if (processedInput.empty()) {
-        throw INPUT_PROCESS_FAILED;
-    }
-
+    // check if there's stuff to process
     if (processedInput.empty()) {
         throw NO_INSTRUCTION_TO_PROCESS;
     }
 
     for (auto &line : processedInput) { // for each line in assembly
         vector<string> vectorTemp = line; // This variable is a temp holding locations for the line we're processing at the time.
+        // temp strings to hold the data while we fetch it
         string variableName = "";
         string mnemonicName = "";
         string label = "";
@@ -244,10 +250,11 @@ void processAssembly() {
             if (!vectorTemp.empty()) {
                 mnemonicName = vectorTemp.at(0);
             }
-            instructionContainer.addInstructions(variableName, mnemonicToInt(mnemonicName));
+            instructionContainer.addInstructions(variableName, mnemonicToInt(mnemonicName)); // place instruction
             cout << "entered | ";
         } else if ((int) vectorTemp.size() > 1) {
             if (vectorTemp.at(1) == "VAR") {
+                // if we find a variable
                 if (2 < (int) vectorTemp.size()) {
                     varValue = vectorTemp.at(2);
                 }
@@ -255,7 +262,7 @@ void processAssembly() {
                     mnemonicName = vectorTemp.at(0);
                 }
                 // if line contains variable
-                variableContainer.addVariable(mnemonicName, stoi(varValue));
+                variableContainer.addVariable(mnemonicName, stoi(varValue)); // add variables
                 cout << "entered | ";
             } else if (find(mnemonics.begin(), mnemonics.end(), vectorTemp.at(1)) != mnemonics.end()) {
                 //if we find a mnemonic with a label
@@ -268,16 +275,17 @@ void processAssembly() {
                 if (!vectorTemp.empty()) {
                     label = vectorTemp.at(0);
                 }
-                instructionContainer.addInstructions(variableName, mnemonicToInt(mnemonicName), label);
+                instructionContainer.addInstructions(variableName, mnemonicToInt(mnemonicName), label); // place instruction
                 cout << "entered | ";
             }
         }
         cout << "end" << endl;
     }
 
-    // This assignees the memory locations of the instructions.
+    // This assigns the memory locations of the instructions.
     instructionContainer.bulkSetMemoryLocation(1); // this is set to 1 as the MB starts its IC from 1 instead of 0
     // This assigns the memory locations of the variables, from the last instructions
+    // We bulk set the variable locations from the location after the instructions that will the size of the instruction Container +1
     variableContainer.bulkSetMemoryLocation((int) instructionContainer.getInstructionListSize() + 1);
     cout << "Completed processing items into Instruction and Symbol table" << endl;
 }
@@ -350,6 +358,7 @@ void outputMachineCode(const string &writeFile) {
         stringBuilder += reverseString(binaryLineNo); // places line number into the line output string
         // This for loop places the spacing between the line number and function number
         int spacingNeeded = (bitsUsedForLineNo + bitsNotUserAfterLineNo) - (int) binaryLineNo.length();
+        // This actually places the 0s into the string
         for (int x = 0; x < spacingNeeded; x++) {
             stringBuilder += '0';
         }
@@ -361,12 +370,12 @@ void outputMachineCode(const string &writeFile) {
             throw FUNCTION_NUMBER_TO_LARGE_FOR_BITS_DEFINED;
         }
         spacingNeeded = (bitsUsedForFunctionNo + bitsNotUsedAfterFunctionNumber) - (int) binaryFunctionNo.length();
+        // This actually places the 0s into the string
         for (int x = 0; x < spacingNeeded; x++) {
             stringBuilder += '0';
         }
 
         outputFile << stringBuilder << endl; //output line to file
-
         cout << "Outputting: " << stringBuilder << endl;// output line to console
     }
 

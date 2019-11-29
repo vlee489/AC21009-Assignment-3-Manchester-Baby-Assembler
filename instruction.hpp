@@ -1,6 +1,11 @@
 //
 // This class hold the data for each instruction
 // that is to be output to machine code
+//  Pui-Hin Vincent Lee: 180006178
+//  Alina Littek: 180016182
+//  Bjarne Kopplin: 180016866
+//	Jacque Nalwanga: 180004882
+//	Andrew Spence: 170018476
 //
 
 #ifndef MBASSEMBLER_INSTRUCTION_HPP

@@ -1,5 +1,10 @@
 //
 // This header stuct defines an object for storing variables for the compiler
+//  Pui-Hin Vincent Lee: 180006178
+//  Alina Littek: 180016182
+//  Bjarne Kopplin: 180016866
+//	Jacque Nalwanga: 180004882
+//	Andrew Spence: 170018476
 //
 #ifndef AC21009_ASSIGNMENT_3_MANCHESTER_BABY_ASSEMBLER_VARIABLE_HPP
 #define AC21009_ASSIGNMENT_3_MANCHESTER_BABY_ASSEMBLER_VARIABLE_HPP

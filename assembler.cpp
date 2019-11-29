@@ -1,5 +1,10 @@
 //
-// Created by Vincent Lee on 25/11/2019.
+// Main file that runs the assembler
+//  Pui-Hin Vincent Lee: 180006178
+//  Alina Littek: 180016182
+//  Bjarne Kopplin: 180016866
+//	Jacque Nalwanga: 180004882
+//	Andrew Spence: 170018476
 //
 
 #include <iostream>

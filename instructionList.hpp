@@ -1,5 +1,10 @@
 //
 // This class is used for storing the list of instructions
+//  Pui-Hin Vincent Lee: 180006178
+//  Alina Littek: 180016182
+//  Bjarne Kopplin: 180016866
+//	Jacque Nalwanga: 180004882
+//	Andrew Spence: 170018476
 //
 
 #ifndef MBASSEMBLER_INSTRUCTIONLIST_HPP
@@ -73,7 +78,7 @@ void instructionList::bulkSetMemoryLocation(int fromMemoryLocation) {
     if((numberOfMemoryLocationsConfig-fromMemoryLocation) < (int)instructionList.size()){
         throw NOT_ENOUGH_MEMORY;
     }else{
-        int memoryLocationBeingSet = fromMemoryLocation; 
+        int memoryLocationBeingSet = fromMemoryLocation;
         // for each instruction we set the memory location then increment the instruction by one
         for(auto & i : instructionList){ // for each object in vector
             i.setMemoryLocation(memoryLocationBeingSet); // set memeory address

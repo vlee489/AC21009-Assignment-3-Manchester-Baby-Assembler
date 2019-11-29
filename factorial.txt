@@ -1,0 +1,21 @@
+; THIS PROGRAM CALCULATES THE FACTORIAL OF A NUMBER
+        VAR 0     ; Declare 32-bit varialbe to fill space
+START:  LDN NUM   ; Copy value to accumulator (negated)
+        MTP SUM   ; Multiply accumulator and SUM
+        STO SUM     ; store the procut of the multiplication
+; The next two instructions negate the stored sum
+        LDN SUM
+        STO SUM
+; the next instructions decreases the factor by one
+        LDN NUM     ; copy NUM to accumulator
+        SUB ONE     ; increase NUM by one
+        CMP         ; if the accumulator is non-negative, stop the program. Else, continue with the next loop
+END:    STP         ; stop processor
+; negate the factor
+        STO NUM
+        LDN NUM
+        STO NUM
+        JMP START   ; jump to start to go into the loop again
+NUM:  VAR 5       ; Declare 32-bit varialbe
+ONE: VAR -1       ; Declare 32-bit varialbe
+SUM:  VAR 1         ; Declare 32-bit varialbe, result

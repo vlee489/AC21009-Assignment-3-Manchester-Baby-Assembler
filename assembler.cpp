@@ -24,8 +24,8 @@ using namespace std;
 vector<vector<string>> processedInput; // Holds the input file after it's cleaned up
 variableList variableContainer; // Holds all the variables used in the assembly file AKA Symbol table
 instructionList instructionContainer; // Holds all the instructions states in the assembly file
-const string arrayMnemonics[7] = {"JMP", "JRP", "LDN", "STO", "SUB", "CMP", "STP"};
-const int arrayFunctionNo[7] = {0, 1, 2, 3, 4, 6, 7};
+const string arrayMnemonics[8] = {"JMP", "JRP", "LDN", "STO", "SUB", "CMP", "STP", "MTP"};
+const int arrayFunctionNo[8] = {0, 1, 2, 3, 4, 6, 7, 8};
 
 vector<string> mnemonics;
 vector<int> functionNumbers;
@@ -349,7 +349,7 @@ void outputMachineCode(const string &writeFile) {
             } catch (...) {
                 //This try catch is to catch any time we looks for a variable that doesn't exist,
                 //like when the string is blank, e.g. STP command
-                if (tempInstruct.getFunctionNumber() != 7) { // we check if it's the stp function
+                if (tempInstruct.getFunctionNumber() > 7 || tempInstruct.getFunctionNumber() < 6 ) { // we check if it's the stp function
                     throw VARIABLE_USED_BUT_NOT_DEFINED;
                 }
             }

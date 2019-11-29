@@ -48,7 +48,7 @@ using namespace std;
 void explainError(int e){
     // This just looks for the error and prints out the reason that error will occur.
     cout << "~~~~~~~~~~~~~" << endl;
-    cout << "  meaning" << endl;
+    cout << "meaning: ";
     switch(e){
         case -101 :
             cout << "Value too big for the memory size" << endl;

@@ -1,5 +1,10 @@
 //
-// Created by Vincent Lee on 25/11/2019.
+// Main file that runs the assembler
+//  Pui-Hin Vincent Lee: 180006178
+//  Alina Littek: 180016182
+//  Bjarne Kopplin: 180016866
+//	Jacque Nalwanga: 180004882
+//	Andrew Spence: 170018476
 //
 
 #include <iostream>
@@ -279,7 +284,7 @@ void processAssembly() {
                 cout << "entered | ";
             }
         }
-        cout << "end" << endl;
+        cout << endl;
     }
 
     // This assigns the memory locations of the instructions.
@@ -422,10 +427,12 @@ int main(int argc, char *argv[]){
             cout << "Looks like you've hit an error in the assembler" << endl;
             cout << "exception code: " << e << endl;
             explainError(e);
+            return 0;
         }catch(exception& e){
             cout << "The assembler has hit into an standered error" << endl;
             cout << "Probably the assembler's programmer's fauly" << endl;
             cout << e.what() << endl;
+            return 0;
         }
     }
     //run assembler with file input/output and a custom config
@@ -449,10 +456,12 @@ int main(int argc, char *argv[]){
             cout << "Looks like you've hit an error in the assembler" << endl;
             cout << "exception code: " << e << endl;
             explainError(e);
+            return 0;
         }catch(exception& e){
             cout << "The assembler has hit into an standered error" << endl;
             cout << "Probably the assembler's programmer's fauly" << endl;
             cout << e.what() << endl;
+            return 0;
         }
     }
     //run assembler with file input/output , custom config and dump all debug info to the console
@@ -477,10 +486,12 @@ int main(int argc, char *argv[]){
             cout << "Looks like you've hit an error in the assembler" << endl;
             cout << "exception code: " << e << endl;
             explainError(e);
+            return 0;
         }catch(exception& e){
             cout << "The assembler has hit into an standered error" << endl;
             cout << "Probably the assembler's programmer's fauly" << endl;
             cout << e.what() << endl;
+            return 0;
         }
     }
 

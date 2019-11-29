@@ -1,6 +1,11 @@
 //
 // Constrains error codes that can be thrown by
 // the assembler
+//  Pui-Hin Vincent Lee: 180006178
+//  Alina Littek: 180016182
+//  Bjarne Kopplin: 180016866
+//	Jacque Nalwanga: 180004882
+//	Andrew Spence: 170018476
 //
 
 #ifndef MBASSEMBLER_ERROR_HPP
@@ -43,7 +48,7 @@ using namespace std;
 void explainError(int e){
     // This just looks for the error and prints out the reason that error will occur.
     cout << "~~~~~~~~~~~~~" << endl;
-    cout << "  meaning" << endl;
+    cout << "meaning: ";
     switch(e){
         case -101 :
             cout << "Value too big for the memory size" << endl;
